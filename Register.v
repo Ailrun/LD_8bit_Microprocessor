@@ -23,7 +23,7 @@ module Register
    initial
      begin
         for (ind0 = 0; ind0 < 4; ind0 = ind0 + 1)
-          register[ind0] <= 0;
+          registers[ind0] <= 0;
      end
 
    always @(posedge clk or posedge reset)

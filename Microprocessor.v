@@ -15,6 +15,8 @@ module Microprocessor
    wire         sigBranch, sigMemtoReg, sigMemRead, sigMemWrite,
                 sigALUOp, sigALUSrc, sigRegWrite, sigRegDst;
 
+   wire [7:0]   memToReg, aluToReg;
+
    Control ctrl(.reset(reset), .clk(clk), .op(instruction[7:6]),
                 .sigBranch(sigBranch), .sigMemtoReg(sigMemtoReg),
                 .sigMemRead(sigMemRead), .sigMemWrite(sigMemWrite),
@@ -27,8 +29,8 @@ module Microprocessor
                             instruction[1:0]:
                             instruction[3:2]);
    wire [7:0]   regWriteData = (sigMemtoReg?
-                                memReadData:
-                                aluResult);
+                                memToReg:
+                                aluToReg);
    wire [7:0]   regReadData1, regReadData2;
 
    Register rgst(.reset(reset), .clk(clk),
@@ -45,6 +47,7 @@ module Microprocessor
                             signExtend:
                             regReadData2);
    wire [7:0]   aluResult;
+   assign aluToReg = aluResult;
 
    ALU alu(.reset(reset), .clk(clk),
            .sigALUOp(sigALUOp),
@@ -55,6 +58,7 @@ module Microprocessor
 
 
    wire [7:0]   memReadData;
+   assign memToReg = memReadData;
 
    Data_Memory dmem(.reset(reset), .clk(clk),
                     .sigMemRead(sigMemRead), .sigMemWrite(sigMemWrite),

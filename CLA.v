@@ -81,9 +81,9 @@ module CLA_2bit
    wire         C;
 
    FAdd fa0(.A(A[0]), .B(B[0]), .Ci(Ci), .P(P[0]), .G(G[0]), .S(S[0]));
-   FAdd fa0(.A(A[1]), .B(B[1]), .Ci(C), .P(P[1]), .G(G[1]), .S(S[1]));
+   FAdd fa1(.A(A[1]), .B(B[1]), .Ci(C), .P(P[1]), .G(G[1]), .S(S[1]));
 
-   CLU_2bit clu2(.P(P), .G(G), Ci(Ci), .Co({Co, C}), .PG(PG), .GG(GG));
+   CLU_2bit clu2(.P(P), .G(G), .Ci(Ci), .Co({Co, C}), .PG(PG), .GG(GG));
 
    xnor xnOF(OF, Co, C);
 
