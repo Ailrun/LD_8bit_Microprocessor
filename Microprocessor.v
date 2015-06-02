@@ -67,7 +67,7 @@ module Microprocessor
 
 
 
-   PCCounter pc(.reset(reset), .clk(clk),
+   PCCounter pcC(.reset(reset), .clk(clk),
                 .sigBranch(sigBranch),
                 .adding(signExtend), .pcAddress(Pc),
                 .flags(pcFlags));
