@@ -42,6 +42,7 @@ module Microprocessor
 
 
 
+   wire [1:0]   aluFlags;
    wire [7:0]   signExtend = { {7{instruction[1]}}, instruction[0] };
    wire [7:0]   operand2 = (sigALUSrc?
                             signExtend:
@@ -66,6 +67,8 @@ module Microprocessor
                     .readData(memReadData));
 
 
+
+   wire [1:0]   pcFlags;
 
    PCCounter pcC(.reset(reset), .clk(clk),
                 .sigBranch(sigBranch),

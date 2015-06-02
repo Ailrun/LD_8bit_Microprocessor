@@ -20,7 +20,7 @@ module Data_Memory
    initial
      begin
         for (ind0 = 0; ind0 < 256; ind0 = ind0 + 1)
-          dataRegisters[ind0] <= 0;
+          dataRegisters[ind0] <= 8'b0;
      end
 
    always @(posedge clk or posedge reset)
@@ -28,7 +28,7 @@ module Data_Memory
         if (reset)
           begin
              for (ind1 = 0; ind1 < 256; ind1 = ind1 + 1)
-               dataRegisters[ind1] <= 0;
+               dataRegisters[ind1] <= 8'b0;
           end
         else
           begin

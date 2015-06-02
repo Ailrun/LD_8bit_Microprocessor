@@ -23,7 +23,7 @@ module Register
    initial
      begin
         for (ind0 = 0; ind0 < 4; ind0 = ind0 + 1)
-          registers[ind0] <= 0;
+          registers[ind0] <= 8'b0;
      end
 
    always @(posedge clk or posedge reset)
@@ -31,7 +31,7 @@ module Register
         if (reset)
           begin
              for (ind1 = 0; ind1 < 4; ind1 = ind1 + 1)
-               registers[ind1] <= 0;
+               registers[ind1] <= 8'b0;
           end
         else
           begin
