@@ -69,9 +69,12 @@ module Microprocessor
 
    PCCounter pcC(.reset(reset), .clk(clk),
                 .sigBranch(sigBranch),
-                .adding(signExtend), .pcAddress(Pc),
+                .adding(signExtend), .pcAddress(pc),
                 .flags(pcFlags));
 
    assign flags = aluFlags | pcFlags;
+
+   BCH bch_low(.binary(regWriteData[3:0]), .hex(lowerHex));
+   BCH bch_high(.binary(regWriteData[7:4]), .hex(higherHex));
 
 endmodule

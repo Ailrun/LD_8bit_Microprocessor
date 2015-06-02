@@ -10,7 +10,7 @@ module PCCounter
    output [1:0] flags
    );
 
-   reg          pc = 0;
+   reg [7:0]    pc = 0;
 
    wire         OF1,OF2;
    wire [7:0]   W1, W2;
