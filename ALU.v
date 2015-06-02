@@ -11,4 +11,12 @@ module ALU
    output [1:0] flags
    );
 
+   wire         OF;
+   wire [7:0]   addResult;
+
+   CLA_8bit cla8_0(.A(operand1), .B(operand2), .Ci(1'b0), .S(addResult), .OF(OF));
+
+   assign result = (sigALUOp?addResult:addResult); // for extension
+   assign flags = {OF, 0};
+
 endmodule // ALU

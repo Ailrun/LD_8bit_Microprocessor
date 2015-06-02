@@ -13,4 +13,30 @@ module Register
    output [7:0] readData2
    );
 
+   reg [7:0]    registers[3:0];
+
+   assign readData1 = registers[readReg1];
+   assign readData2 = registers[readReg2];
+
+   integer      ind0, ind1;
+
+   initial
+     begin
+        for (ind0 = 0; ind0 < 4; ind0 = ind0 + 1)
+          register[ind0] <= 0;
+     end
+
+   always @(posedge clk or posedge reset)
+     begin
+        if (reset)
+          begin
+             for (ind1 = 0; ind1 < 4; ind1 = ind1 + 1)
+               registers[ind1] <= 0;
+          end
+        else
+          begin
+             registers[writeReg] <= (sigRegWrite?writeData:registers[writeReg]);
+          end
+     end
+
 endmodule // Register

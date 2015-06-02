@@ -5,7 +5,7 @@ module Microprocessor
    input        reset,
    input        clk,
    input [7:0]  instruction,
-   output [7:0] nextPc,
+   output [7:0] pc,
    output [6:0] lowerHex,
    output [6:0] higherHex,
    output [1:0] flags //flags[0] : inf loop, flags[1] : OF
@@ -65,7 +65,7 @@ module Microprocessor
 
    PCCounter pc(.reset(reset), .clk(clk),
                 .sigBranch(sigBranch),
-                .adding(signExtend), .nextPc(Pc),
+                .adding(signExtend), .pcAddress(Pc),
                 .flags(pcFlags));
 
    assign flags = aluFlags | pcFlags;
