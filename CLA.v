@@ -165,11 +165,11 @@ module CLU_2bit
    );
 
    and a00(W00, P[0], Ci);
-   or o00(C[1], W00, G[0]);
+   or o00(Co[1], W00, G[0]);
 
    and a10(W10, P[1], P[0], Ci);
    and a11(W11, P[1], G[0]);
-   or o10(C[2], W11, W10, G[1]);
+   or o10(Co[2], W11, W10, G[1]);
 
    and aPG0(PG, P[1], P[0]);
    or oGG0(GG, W11, G[1]);
