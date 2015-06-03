@@ -1,21 +1,30 @@
 `timescale 1ns / 1ps
 
-module Microprocessor
-  ( // Yet there is some question. For ex/ is clk input? when we can get inst?
-   input        reset,
-   input        clk,
-   input [7:0]  instruction,
-   output [7:0] pc,
-   output [6:0] lowerHex,
-   output [6:0] higherHex,
-   output [1:0] flags //flags[0] : inf loop, flags[1] : OF
-   );
+module Microprocessor#(parameter OUTER_CLK_FRQ = 1000000, INTER_CLK_FRQ = 10,
+                       LOWER_DMEM_LIMIT = 0, HIGHER_DMEM_LIMIT = 255)
+   ( // Yet there is some question. For ex/ is clk input? when we can get inst?
+     input        reset,
+     input        outerClk,
+     input [7:0]  instruction,
+     output [7:0] pc,
+     output [6:0] lowerHex,
+     output [6:0] higherHex,
+     output [1:0] flags //flags[0] : inf loop, flags[1] : OF
+     );
+
+   wire [7:0]     memToReg, aluToReg;
+
+
+
+   wire         clk;
+
+   CLK_Divider#(OUTER_CLK_FRQ, INTER_CLK_FRQ)
+   clkDiv(.reset(reset) .clkin(outerClk), .clkout(clk));
+
 
 
    wire         sigBranch, sigMemtoReg, sigMemRead, sigMemWrite,
                 sigALUOp, sigALUSrc, sigRegWrite, sigRegDst;
-
-   wire [7:0]   memToReg, aluToReg;
 
    Control ctrl(.reset(reset), .clk(clk), .op(instruction[7:6]),
                 .sigBranch(sigBranch), .sigMemtoReg(sigMemtoReg),
@@ -61,10 +70,11 @@ module Microprocessor
    wire [7:0]   memReadData;
    assign memToReg = memReadData;
 
-   Data_Memory dmem(.reset(reset), .clk(clk),
-                    .sigMemRead(sigMemRead), .sigMemWrite(sigMemWrite),
-                    .dataAddress(aluResult), .writeData(regReadData2),
-                    .readData(memReadData));
+   Data_Memory#(LOWER_DMEM_LIMIT, HIGHER_DMEM_LIMIT)
+   dmem(.reset(reset), .clk(clk),
+        .sigMemRead(sigMemRead), .sigMemWrite(sigMemWrite),
+        .dataAddress(aluResult), .writeData(regReadData2),
+        .readData(memReadData));
 
 
 
