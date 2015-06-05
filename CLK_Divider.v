@@ -9,7 +9,7 @@ module CLK_Divider#(IN_CLK_FRQ = 1000000, OUT_CLK_FRQ = 10)
 
    localparam CLK_PER_CLK = IN_CLK_FRQ / (2*OUT_CLK_FRQ);
 
-   reg [$clog2(CLK_PER_CLK):0] counter;
+   reg [31:0] counter;
 
    always @(posedge clkin)
      begin

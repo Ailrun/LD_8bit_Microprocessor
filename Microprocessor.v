@@ -2,7 +2,7 @@
 
 module Microprocessor#(parameter OUTER_CLK_FRQ = 1000000, INTER_CLK_FRQ = 10,
                        LOWER_DMEM_LIMIT = 0, HIGHER_DMEM_LIMIT = 255)
-   ( // Yet there is some question. For ex/ is clk input? when we can get inst?
+   (
      input        reset,
      input        outerClk,
      input [7:0]  instruction,
