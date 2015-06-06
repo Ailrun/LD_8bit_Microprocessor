@@ -18,13 +18,16 @@ module Register
    assign readData1 = registers[readReg1];
    assign readData2 = registers[readReg2];
 
-   integer      ind0, ind1;
+//   integer      ind0;
+   integer      ind1;
 
+/* Maybe Make Error
    initial
      begin
         for (ind0 = 0; ind0 < 4; ind0 = ind0 + 1)
           registers[ind0] <= 8'b0;
      end
+*/
 
    always @(posedge clk or posedge reset)
      begin

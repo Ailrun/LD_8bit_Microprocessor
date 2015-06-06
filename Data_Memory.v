@@ -15,7 +15,8 @@ module Data_Memory#(parameter LOWER_DMEM_LIMIT = 0, HIGHER_DMEM_LIMIT = 255)
 
    assign readData = dataRegisters[dataAddress];
 
-   integer      ind0, ind1;
+// integer      ind0;
+   integer      ind1;
 
 /* Maybe Make Error
    initial

@@ -16,7 +16,8 @@ module ALU
 
    CLA_8bit cla8_0(.A(operand1), .B(operand2), .Ci(1'b0), .S(addResult), .OF(OF));
 
-   assign result = reset?8'b0:(sigALUOp?addResult:addResult); // for extension
+//   assign result = reset?8'b0:(sigALUOp?addResult:addResult); for extension
+   assign result = reset?8'b0:addResult;
    assign flags = {OF, 1'b0};
 
 endmodule // ALU
