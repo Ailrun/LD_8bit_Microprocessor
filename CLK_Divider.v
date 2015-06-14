@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module CLK_Divider#(IN_CLK_FRQ = 1000000, OUT_CLK_FRQ = 10)
+module CLK_Divider#(parameter IN_CLK_FRQ = 1000000, OUT_CLK_FRQ = 10)
    (
     input      reset,
     input      clkin,
