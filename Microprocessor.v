@@ -19,7 +19,7 @@ module Microprocessor#(parameter OUTER_CLK_FRQ = 1000000, INTER_CLK_FRQ = 10,
    wire         clk;
 
    CLK_Divider#(OUTER_CLK_FRQ, INTER_CLK_FRQ)
-   clkDiv(.reset(reset) .clkin(outerClk), .clkout(clk));
+   clkDiv(.reset(reset), .clkin(outerClk), .clkout(clk));
 
 
 
