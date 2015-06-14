@@ -16,8 +16,8 @@ module Microprocessor_w_Im#(parameter OUTER_CLK_FRQ = 1000000,
 
    Microprocessor#(OUTER_CLK_FRQ, INTER_CLK_FRQ,
                    LOWER_DMEM_LIMIT, HIGHER_DMEM_LIMIT)
-   micro (.reset(reset), .outerClk(clk), .instruction(instruction) .pc(pc),
-          .lowerHex(lowerHex), .higherHex(higherHex), flags(flags));
+   micro (.reset(reset), .outerClk(clk), .instruction(instruction), .pc(pc),
+          .lowerHex(lowerHex), .higherHex(higherHex), .flags(flags));
 
    Instruction_Memory#(LOWER_IMEM_LIMIT, HIGHER_IMEM_LIMIT)
    imem (.readAddress(pc), .instruction(instruction));
